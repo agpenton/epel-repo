@@ -18,3 +18,5 @@ script:
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  slack: studioservers:qgnyZ3JoXis7CHgZ7eIAmuP8
+
