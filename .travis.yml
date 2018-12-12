@@ -10,7 +10,6 @@ services: docker
 
 env:
   - distro: centos7
-  - distro: centos6
 
 script:
   # Download test shim.
