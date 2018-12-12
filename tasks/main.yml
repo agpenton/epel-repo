@@ -7,3 +7,4 @@
 - include: update.yml
 # - include: hostname.yml
 - include: php.yml
+- include: virtualmin.yml
