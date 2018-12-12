@@ -20,8 +20,8 @@
 
 - name: virtualmin install (~10 mins) track via $ sudo tail -f /root/virtualmin-install.log
   script: ~/install.sh --yes
-  args:
-  creates: /root/virtualmin-install.log
+  # args:
+  # creates: /root/virtualmin-install.log
 
 # - name: Wait until the file /etc/httpd/conf/httpd.conf is present before continuing
 #   wait_for:
