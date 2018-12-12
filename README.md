@@ -1,7 +1,7 @@
-Role Name
+EPEL-REPO
 =========
 
-A brief description of the role goes here.
+Add the epel repo to CentOS and update the system.
 
 Requirements
 ------------
