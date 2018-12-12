@@ -1,2 +1,5 @@
 ---
 # vars file for agpenton.example
+tasks_order:
+  - epel.yml
+  - remi.yml
