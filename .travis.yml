@@ -1,6 +1,11 @@
 ---
 language: python
+<<<<<<< HEAD
 
+=======
+python:
+  - "2.7"
+>>>>>>> a8d36feb5a74113b306d1e9848275bb40ff56919
 services: docker
 
 env:
@@ -9,6 +14,7 @@ env:
 
 script:
   # Download test shim.
+  - mkdir -p ${PWD}/tests
   - wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/geerlingguy/73ef1e5ee45d8694570f334be385e181/raw/
   - chmod +x ${PWD}/tests/test.sh
 
