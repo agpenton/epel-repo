@@ -4,3 +4,4 @@
   # include_tasks: "{{ tasks_order }}"
 - include: epel.yml
 - include: remi.yml
+- include: update.yml
