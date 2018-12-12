@@ -5,4 +5,4 @@
 - include: epel.yml
 - include: remi.yml
 - include: update.yml
-- include: hostname.yml
+# - include: hostname.yml

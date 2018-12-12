@@ -1,0 +1,14 @@
+---
+- name: Enable remi php 7.2
+  yum_repository:
+    name: remi-php72
+    description: "Remi's PHP 7.2 RPM repository for CentOS Linux 7 - $basearch"
+    mirrorlist: http://cdn.remirepo.net/enterprise/7/php72/mirror
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+    gpgcheck: true
+    enabled: true
+    state: present
+
+- name: Install php extensions
+  package: name="php{{phpfpm_version}}-php-{{ item }}" state=stable
+  with_items: "{{ phpfpm_pkg }}"

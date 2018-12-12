@@ -6,6 +6,59 @@ epel_repofile_path: "/etc/yum.repos.d/epel.repo"
 remi_repo_url: "http://rpms.remirepo.net/enterprise/remi-release-{{ ansible_distribution_major_version }}.rpm"
 remi_repo_gpg_key_url: "http://rpms.remirepo.net/RPM-GPG-KEY-remi"
 
-# tasks_order:
-  # - epel.yml
-  # - remi.yml
+phpfpm_version: 72
+phpfpm_pkg:
+  - fpm
+  - opcache
+  - cli
+  - xml
+  - common
+  - mysqlnd
+  - gd
+  - pear
+  - mcrypt
+  - soap
+  - mbstring
+  - pdo
+  - process
+  - pecl-zip
+
+sysadmin_tools:
+  - ccze
+  - mc
+  - cronie
+  - git
+  - htop
+  - atop
+  - iftop
+  - iproute
+  - ntp
+  - fping
+  - xfsprogs
+  # - mariadb
+  # - nmap
+  # - man
+  - ncdu
+  - python-pip
+  - rsync
+  - sudo
+  - tmux
+  - traceroute
+  - vim
+  - which
+  - yum-plugin-keys
+  - joe
+
+nginx_packages:
+  - module-geoip
+  - mod-http-image-filter
+  - mod-http-perl
+  - mod-stream
+  - module-njs
+  - wbm-virtualmin-nginx
+  - wbm-virtualmin-nginx-ssl
+
+change_hostname_reboot: true
+
+ipset: false
+statistical_graphs: false
