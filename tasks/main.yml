@@ -1,4 +1,6 @@
 ---
 # tasks file for agpenton.example
 - name: installing repos
-  include: epel.yml
+  include: 
+    - epel.yml
+    - remi.yml
