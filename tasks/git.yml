@@ -24,4 +24,8 @@
   file: state=directory path=~/.vim/bundle
 
 - name: install vim pathogen
-  shell: curl 'www.vim.org/scripts/download_script.php?src_id=19375' -o ~/.vim/autoload/pathogen.vim creates=~/.vim/autoload/pathogen.vim
+#   shell: curl 'www.vim.org/scripts/download_script.php?src_id=19375' -o ~/.vim/autoload/pathogen.vim creates=~/.vim/autoload/pathogen.vim
+  get_url:
+    url: http://www.vim.org/scripts/download_script.php?src_id=19375
+    dest: ~/.vim/autoload/pathogen.vim
+    # mode: 0440
