@@ -1,0 +1,4 @@
+---
+- name: Ensure basic sysadmin tools installed
+  yum: name={{ item }} state=latest
+  with_items: "{{ sysadmin_tools }}"

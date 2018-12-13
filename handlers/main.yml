@@ -1,2 +1,46 @@
 ---
 # handlers file for agpenton.example
+
+# Restart HTTPD
+- name: restart httpd
+  systemd: name=httpd state=restarted
+
+# Restart WEBMIN
+- name: restart webmin
+  systemd: name=webmin state=restarted
+
+- name: enable nginx
+  systemd: name=nginx state=enable
+
+# Start NGINX
+- name: start nginx
+  systemd: name=nginx state=started
+
+# Restart NGINX
+- name: restart nginx
+  systemd: name=nginx state=restarted
+
+# Restart CSF
+- name: restart csf
+  command: csf -r
+
+# Restart LFD
+- name: restart lfd
+  service: name=lfd state=restarted
+
+# Restart SSHD
+- name: Restart sshd
+  service:
+    name: sshd
+    state: restarted
+
+- name: main | restarting machine
+  shell: sleep 2 && shutdown -r now "rebooting to complete hostname change"
+  async: 1
+  poll: 0
+  ignore_errors: true
+  become: true
+  when: >
+        (change_hostname_reboot is defined and
+        change_hostname_reboot ) and
+        hostname_status.changed

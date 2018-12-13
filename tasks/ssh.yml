@@ -1,0 +1,28 @@
+---
+- name: Setup alternate SSH port
+  lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: "^Port"
+    line: "Port 2234"
+  notify: "Restart sshd"
+
+- name: Setup selinux for alternate SSH port
+  seport:
+    ports: "2234"
+    proto: "tcp"
+    setype: "ssh_port_t"
+    state: "present"
+
+- name: changing TCP_IN in csf
+  shell: sed -i 's/^TCP_IN[ ]*=[ ]*"/TCP_IN = "2234,/g' /etc/csf/csf.conf
+  warn: false
+  ignore_errors: true
+  notify:
+    - restart csf
+
+- name: changing TCP_OUT in csf
+  shell: sed -i 's/^TCP_OUT[ ]*=[ ]*"/TCP_OUT = "2234,/g' /etc/csf/csf.conf
+  warn: false
+  ignore_errors: true
+  notify:
+    - restart csf
