@@ -10,9 +10,10 @@
     state: present
 
 - name: Install php
-  yum: php 
-  state: present
-  
+  yum: 
+   name: php 
+   state: present
+
 - name: Install php extensions
   package: name="php{{phpfpm_version}}-php-{{ item }}" state=present
   with_items: "{{ phpfpm_pkg }}"
