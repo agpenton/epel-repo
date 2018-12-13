@@ -12,3 +12,4 @@
 - include: nginx.yml
 - include: composer.yml
 - include: admintools.yml
+- include: csf.yml
