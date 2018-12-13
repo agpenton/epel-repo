@@ -63,12 +63,12 @@
 - name: Virtualmin Post-Installation Wizard
   pause: prompt="virtualmin ready for post-installation, visit - https://{{inventory_hostname}}:10000"
 
+# # - name: apache2 listen on port 8080
 # - name: apache2 listen on port 8080
-- name: apache2 listen on port 8080
-  lineinfile: dest=/etc/httpd/conf/httpd.conf regexp='^Listen 80' line="Listen 8080" state=present
-  ignore_errors: true
-  notify:
-        - restart httpd
+#   lineinfile: dest=/etc/httpd/conf/httpd.conf regexp='^Listen 80' line="Listen 8080" state=present
+#   ignore_errors: true
+#   notify:
+#         - restart httpd
 
 # - name: apache2 SSL on port 7443
 # - name: apache2 listen on port 8080
@@ -87,11 +87,11 @@
 # - handlers:
 #   - name: restart httpd
 #     service: name=httpd state=restarted
-- name: Virtualmin on port 12345.
-  lineinfile: dest=/etc/webmin/miniserv.conf regexp="^port=10000" line="port=12345" state=present
-  ignore_errors: true
-  notify:
-        - restart webmin
+# - name: Virtualmin on port 12345.
+#   lineinfile: dest=/etc/webmin/miniserv.conf regexp="^port=10000" line="port=12345" state=present
+#   ignore_errors: true
+#   notify:
+#         - restart webmin
 # - name: changing Webmin port
 #   shell: sed -i 's/^[#]*port=.*/port=12345/g' /etc/webmin/miniserv.conf
 #   warn: no
