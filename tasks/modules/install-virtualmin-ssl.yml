@@ -1,7 +1,7 @@
 ---
 - name: "Install NGINX Virtualmin SSL Module"
   yum:
-    name: wbm-virtualmin-nginx-ssl
+    name: wbm-virtualmin-nginx-ssl.noarch
     state: present
 
 # - name: "(Setup: All NGINX) Load NGINX GeoIP Module"
