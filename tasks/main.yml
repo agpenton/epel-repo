@@ -5,7 +5,8 @@
 - include: epel.yml
 - include: remi.yml
 - include: update.yml
+- include: git.yml
 # - include: hostname.yml
 - include: php.yml
-# - include: virtualmin.yml
+- include: virtualmin.yml
 - include: nginx.yml

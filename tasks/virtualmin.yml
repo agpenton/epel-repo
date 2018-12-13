@@ -12,25 +12,56 @@
 #   when: hostvars[item].ansible_default_ipv4.address is defined
 #   with_items: " {{ groups['all'] }}"
 
-- name: copy modified install script
-  copy: src=install.sh dest=/root/install.sh
+# - name: copy modified install script
+#   copy: src=install.sh dest=/root/install.sh
 
-- name: virtualmin install executable
-  file: path=/root/install.sh mode=0755
+# - name: virtualmin install executable
+#   file: path=/root/install.sh mode=0755
+
+# - name: virtualmin install (~10 mins) track via $ sudo tail -f /root/virtualmin-install.log
+#   script: ~/install.sh --yes
+#   args:
+#   creates: /root/virtualmin-install.log
+
+# # - name: Wait until the file /etc/httpd/conf/httpd.conf is present before continuing
+# #   wait_for:
+# #     path: /etc/httpd/conf/httpd.conf
+# - name: Wait until the string "completed" is in the file /root/virtualmin-install.log before continuing
+#   wait_for:
+#         timeout: 900
+#         path: "/root/virtualmin-install.log"
+#         search_regex: 'Installation Complete'
+####################################################################
+# New Version of virtualmin install
+####################################################################
+- name: Check if webmin is running
+    # shell: ps aux | grep webmin | grep -v grep
+  command: ps aux | grep webmin | grep -v grep
+  ignore_errors: yes
+  changed_when: false
+  register: service_webmin_status
+
+- name: Report status of Apache
+  fail:
+    msg: |
+      Service apache2 is not running.
+      Return code from `grep`:
+      {{ service_apache_status.rc }}
+  when: service_webmin_status.rc != 0
+
+- name: download virtualmin install script
+  tags: webmin
+  get_url: >
+    url=http://software.virtualmin.com/gpl/scripts/install.sh
+    dest=/root/install.sh
+    mode=0755
 
 - name: virtualmin install (~10 mins) track via $ sudo tail -f /root/virtualmin-install.log
-  script: ~/install.sh --yes
-  args:
-  creates: /root/virtualmin-install.log
+  shell: ~/install.sh --yes chdir=/root
+  when: service_webmin_status.rc != 0
 
-# - name: Wait until the file /etc/httpd/conf/httpd.conf is present before continuing
-#   wait_for:
-#     path: /etc/httpd/conf/httpd.conf
-- name: Wait until the string "completed" is in the file /root/virtualmin-install.log before continuing
-  wait_for:
-        timeout: 900
-        path: "/root/virtualmin-install.log"
-        search_regex: 'Installation Complete'
+- name: Virtualmin Post-Installation Wizard
+  pause: prompt="virtualmin ready for post-installation, visit - https://{{inventory_hostname}}:10000"
 
 # - name: apache2 listen on port 8080
 - name: apache2 listen on port 8080
