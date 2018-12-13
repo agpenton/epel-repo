@@ -1,7 +1,7 @@
 ---
 - name: "Install NGINX Perl Module"
   package:
-    name: mod-http-perl
+    name: nginx-mod-http-perl
     state: present
 
 # - name: "(Setup: All NGINX) Load NGINX Perl Module"

@@ -1,7 +1,7 @@
 ---
 - name: "Install NGINX JavaScript Module"
   package:
-    name: module-njs
+    name: nginx-module-njs
     state: present
 
 # - name: "(Setup: All NGINX) Load NGINX JavaScript Module"

@@ -1,7 +1,7 @@
 ---
 - name: "Install NGINX Image Filter Module"
   package:
-    name: mod-http-image-filter
+    name: nginx-mod-http-image-filter
     state: present
 
 # - name: "(Setup: All NGINX) Load NGINX Image Filter Module"

@@ -1,7 +1,7 @@
 ---
 - name: "Install NGINX GeoIP Module"
   yum:
-    name: module-geoip
+    name: nginx-module-geoip
     state: present
 
 - name: "(Setup: All NGINX) Load NGINX GeoIP Module"

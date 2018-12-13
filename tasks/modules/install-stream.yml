@@ -1,7 +1,7 @@
 ---
 - name: "Install NGINX Stream Module"
   yum:
-    name: mod-stream
+    name: nginx-mod-stream
     state: present
 
 # - name: "(Setup: All NGINX) Load NGINX GeoIP Module"
