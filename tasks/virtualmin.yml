@@ -46,8 +46,8 @@
     msg: |
       Service apache2 is not running.
       Return code from `grep`:
-      {{ service_apache_status }}
-  when: service_webmin_status != 0
+      { service_apache_status.rc }
+  when: service_webmin_status.rc != 0
 
 - name: download virtualmin install script
   tags: webmin
