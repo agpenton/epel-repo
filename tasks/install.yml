@@ -11,14 +11,14 @@
 - name: create temp dir
   file: >
     path=/tmp/csf state=directory mode=0700
-  when: result|failed
+  when: result is failed
 
 # Download the CSF file
 - name: download csf files
   unarchive: >
     src=https://download.configserver.com/csf.tgz dest=/tmp/csf
     remote_src=yes
-  when: result|failed
+  when: result is failed
 
 # Install lib-perl which is sometimes required for retrieving HTTPS URL's
 - name: install package libwww-perl [Debian]
@@ -70,4 +70,4 @@
 - name: cleanup csf files
   file: >
     path=/tmp/csf state=absent
-  when: result|failed
+  when: result is failed
