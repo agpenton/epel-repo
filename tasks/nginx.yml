@@ -23,8 +23,8 @@
 - include: modules/install-perl.yml
 - include: modules/install-stream.yml
 - include: modules/install-njs.yml
-- include: modules/install-virtualmin.yml
-- include: modules/install-virtualmin-ssl.yml
+# - include: modules/install-virtualmin.yml
+# - include: modules/install-virtualmin-ssl.yml
 
 # - name: Restart nginx
 #   notify:
