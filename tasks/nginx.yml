@@ -26,8 +26,8 @@
 - include: modules/install-virtualmin.yml
 - include: modules/install-virtualmin-ssl.yml
 
-- name: Restart nginx
-  notify:
-    - restart nginx
+# - name: Restart nginx
+#   notify:
+#     - restart nginx
 # - name: Start Nginx
 #   service: name=nginx enabled=yes state=started
