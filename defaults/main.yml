@@ -36,8 +36,8 @@ sysadmin_tools:
   - fping
   - xfsprogs
   # - mariadb
-  # - nmap
-  # - man
+  - nmap
+  - man
   - ncdu
   - python-pip
   - rsync

@@ -10,3 +10,5 @@
 - include: php.yml
 - include: virtualmin.yml
 - include: nginx.yml
+- include: composer.yml
+- include: admintools.yml
