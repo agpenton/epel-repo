@@ -57,8 +57,9 @@
     mode=0755
 
 - name: virtualmin install (~10 mins) track via $ sudo tail -f /root/virtualmin-install.log
-  shell: ~/install.sh --yes chdir=/root
-  when: service_webmin_status == 0
+  shell: ~/install.sh --yes chdir=/root 
+  creates: /root/virtualmin-install.log
+#   when: service_webmin_status == 0
 
 - name: Virtualmin Post-Installation Wizard
   pause: prompt="virtualmin ready for post-installation, visit - https://{{inventory_hostname}}:10000"
