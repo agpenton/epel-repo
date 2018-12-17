@@ -3,9 +3,9 @@
 - name: ensure perl-Crypt-SSLeay present
   yum: name=perl-Crypt-SSLeay state=present
 
-# - name: set hostname
-#   hostname:
-#         name="{{ inventory_hostname }}"
+- name: set hostname
+  hostname:
+        name="{{ inventory_hostname }}"
 
 # - name: set fqdn
 #   lineinfile: dest=/etc/hosts regexp='.*{{ item }}$' line="{{ hostvars[item].ansible_default_ipv4.address }} {{item}}" state=present
