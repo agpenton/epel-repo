@@ -16,14 +16,14 @@ pipeline {
             sh '${PWD}/tests/test.sh'
           }
         }
-        stage('') {
+        stage('error') {
           steps {
             echo 'failed...something when wrong!!!'
           }
         }
       }
     }
-    stage('') {
+    stage('error') {
       steps {
         echo 'all good!!!'
       }
