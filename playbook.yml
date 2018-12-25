@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: yes
+
+  # roles:
+  #   - epel-repo
+  tasks:
+    - import_tasks: tasks/main.yml
