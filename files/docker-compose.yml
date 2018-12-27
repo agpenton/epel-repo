@@ -1,0 +1,63 @@
+version: '2'
+services:
+  php:
+    # image: php:7.2-fpm-alpine
+    image: agpenton/menu-php:latest
+    # command: docker-php-ext-install -j5 gd mbstring mysqli pdo pdo_mysql ; docker-php-ext-enable --ini-name gd mbstring mysqli pdo pdo_mysql
+    # command: docker-php-ext-enable --ini-name gd mbstring mysqli pdo pdo_mysql
+    volumes:
+      - ./:/web
+    working_dir: /web
+  # composer:
+  #   image: composer:latest
+  #   volumes:
+  #     - ./:/web
+  #   depends_on:
+  #     - php
+  web:
+    image: nginx:latest
+    volumes:
+      - ./:/web
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      # - ./nginx:/etc/nginx
+    # depends_on:
+    #   - php
+    ports:
+      - 80:80
+      - 443:443
+  mysql:
+    image: mariadb:latest
+    volumes:
+      - ./:/web
+      - dbdata:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=menu_am
+      - MYSQL_ROOT_PASSWORD=q1w2e3r4
+    working_dir: /web
+  menu_am:
+    image: agpenton/osrm-am:1.0
+    working_dir: /data
+    command: osrm-routed --algorithm mld /data/armenia-latest.osrm
+    ports:
+      - 5000:5000
+  menu_by:
+      image: agpenton/osrm-by:1.0
+      working_dir: /data
+      command: osrm-routed --algorithm mld /data/belarus-latest.osrm
+      ports:
+        - 5002:5000
+  menu_ge:
+      image: agpenton/osrm-ge:1.0
+      working_dir: /data
+      command: osrm-routed --algorithm mld /data/georgia-latest.osrm
+      ports:
+        - 5001:5000
+  portainer:
+      image: portainer/portainer:latest
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - ../osrm/portainer_data:/data
+      ports:
+        - 9000:9000
+volumes:
+  dbdata:

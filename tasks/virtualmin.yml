@@ -3,6 +3,12 @@
 - name: ensure perl-Crypt-SSLeay present
   yum: name=perl-Crypt-SSLeay state=present
 
+# - name: Change the hostname to our standard
+#   shell: hostnamectl set-hostname test.studioone.am
+#   hostname:
+#     name="{{ inventory_hostname }}"
+#   when:
+#     ansible_fqdn != ansible_ssh_host
 # - name: set hostname
 #   hostname:
 #         name="{{ inventory_hostname }}"
