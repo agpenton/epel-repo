@@ -1,6 +1,7 @@
 ---
 - name: check registered the repository of nginx-release
-  shell: rpm -qa | grep nginx-release
+#   shell: rpm -qa | grep nginx-release
+  shell: yum repolist all | grep nginx-release
   register: result
   ignore_errors: true
 #   always_run: true
